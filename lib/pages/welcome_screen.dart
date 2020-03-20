@@ -4,6 +4,7 @@ import 'package:responsive_size_layouts_tutorial/size_config.dart';
 import '../images.dart';
 import '../strings.dart';
 import '../styling.dart';
+import 'home_screen.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -46,7 +47,7 @@ class WelcomeContentWidget extends StatelessWidget {
               child: FittedBox(
                 child: Text(
                   Strings.welcomeScreenTitle,
-                  style: Theme.of(context).textTheme.title,
+                  style:  Theme.of(context).textTheme.title,
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -88,39 +89,44 @@ class WelcomeContentWidget extends StatelessWidget {
 class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Container(
-        constraints: BoxConstraints(
-          minHeight: 9.375 * SizeConfig.heightMultiplier,
-          maxHeight: 10.9375 * SizeConfig.heightMultiplier,  
-          ),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(4.68 * SizeConfig.heightMultiplier)),
-          color: AppTheme.topBarBackgroundColor, 
-          ),
-          child: Row(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: Icon(
-                  Icons.chevron_left,
-                  size: 8.33 * SizeConfig.imageSizeMultiplier,
-                  ),
-                ),
-                Text(
-                  Strings.getStartedButton,
-                  style: Theme.of(context).textTheme.button,
-                ),
+    return InkWell(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          },
+          child: Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          constraints: BoxConstraints(
+            minHeight: 9.375 * SizeConfig.heightMultiplier,
+            maxHeight: 10.9375 * SizeConfig.heightMultiplier,  
+            ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(4.68 * SizeConfig.heightMultiplier)),
+            color: AppTheme.topBarBackgroundColor, 
+            ),
+            child: Row(
+              children: <Widget>[
                 Expanded(
-                flex: 1,
-                child: Icon(
-                  Icons.chevron_right,
-                  size: 8.33 * SizeConfig.imageSizeMultiplier,
+                  flex: 1,
+                  child: Icon(
+                    Icons.chevron_left,
+                    size: 8.33 * SizeConfig.imageSizeMultiplier,
+                    ),
                   ),
-                ),
-            ],),
+                  Text(
+                    Strings.getStartedButton,
+                    style: Theme.of(context).textTheme.button,
+                  ),
+                  Expanded(
+                  flex: 1,
+                  child: Icon(
+                    Icons.chevron_right,
+                    size: 8.33 * SizeConfig.imageSizeMultiplier,
+                    ),
+                  ),
+              ],),
+          ),
         ),
-      );
+    );
   }
 }
